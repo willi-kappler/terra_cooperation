@@ -37,7 +37,7 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Cirpka")
     workgroup.department = [(Department.geo, 3), (Department.comp, 1)]
-    workgroup.cooperations = [("Kappler", 7), ("Streck", 8), ("Tielbörger", 1), ("Zarfl", 8)]
+    workgroup.cooperations = [("Kappler", 7), ("Schönberg", 1), ("Streck", 8), ("Tielbörger", 1), ("Zarfl", 8)]
     result.append(workgroup)
 
     workgroup = Workgroup("Macke")
@@ -52,19 +52,19 @@ def generateWorkgroups():
     result.append(workgroup)
 
     workgroup = Workgroup("Scholten")
-    workgroup.cooperations = [("Dippold", 4), ("Kappler", 4), ("Oelmann", 5), ("Tielbörger", 5), ("Zarfl", 1)]
+    workgroup.cooperations = [("Dippold", 4), ("Drews", 1), ("Kappler", 4), ("Oelmann", 5), ("Tielbörger", 5), ("Zarfl", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Rehfeld")
     workgroup.department = [(Department.geo, 3), (Department.comp, 1)]
     workgroup.appointmentSince = "2020"
-    workgroup.cooperations = [("Dippold", 1), ("Schweiger", 1)]
+    workgroup.cooperations = [("Dippold", 1), ("Schweiger", 1), ("Mulch", 1), ("Tsukamoto", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Dippold")
     workgroup.department = [(Department.geo, 1),  (Department.bio, 1)]
     workgroup.appointmentSince = "2020"
-    workgroup.cooperations = [("Drews", 1), ("Mulch", 1), ("Oelmann", 4), ("Schweiger", 1), ("Tielbörger", 4)]
+    workgroup.cooperations = [("Drews", 1), ("Mulch", 1), ("Oelmann", 4), ("Schweiger", 1), ("Tielbörger", 4), ("Streck", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Drews")
@@ -81,12 +81,12 @@ def generateWorkgroups():
     workgroup = Workgroup("Tsukamoto")
     workgroup.department = [Department.geo]
     workgroup.appointmentSince = "2023"
-    workgroup.cooperations = [("Mulch", 1), ("Rehfeld", 1)]
+    workgroup.cooperations = [("Mulch", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Tielbörger")
     workgroup.department = [Department.bio]
-    workgroup.cooperations = [("Bocherens", 1), ("Hickler", 1), ("Oelmann", 4), ("Schweiger", 1), ("Schurr", 3), ("Streck", 1), ("Zarfl", 1)]
+    workgroup.cooperations = [("Bocherens", 1), ("Hickler", 1), ("Oelmann", 4), ("Schweiger", 1), ("Schurr", 3), ("Streck", 1), ("Zarfl", 2), ("Monte", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Schurr")
@@ -111,7 +111,7 @@ def generateWorkgroups():
     workgroup = Workgroup("Hickler")
     workgroup.department = [(Department.bio, 2), (Department.geo, 1)]
     workgroup.institution = Institution.senckenberg
-    workgroup.cooperations = [("Fritz", 1), ("Mulch", 5)]
+    workgroup.cooperations = [("Fritz", 3), ("Mulch", 6)]
     result.append(workgroup)
 
     workgroup = Workgroup("Fritz")
