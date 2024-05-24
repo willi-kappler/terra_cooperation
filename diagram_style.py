@@ -8,6 +8,7 @@ class DiagramStyle:
         self.compColor = "#a11e3b"
         self.legendFont = ""
         self.legendFontSize = 15
+        self.legendSymbolSize = 25
         self.legendPos = (0.0, 10.0)
         self.legendRectsize = 0.3
         self.legendRectsize2 = self.legendRectsize / 2.0

@@ -129,10 +129,11 @@ def drawTriangle(ax, pos, lw, fc, ec, style):
     x3 = pos[0] + style.legendRectsize2
 
     y1 = pos[1] - (style.legendRectsize / (2.0 * sq3))
-    y2 = pos[1] + (style.legendRectsize / sq3)
+    y2 = pos[1]
+    y3 = pos[1] + (style.legendRectsize / sq3)
 
     if isinstance(fc, str):
-        ax.add_patch(plt.Polygon([(x1, y1), (x2, y2), (x3, y1)], lw=lw, fc=fc, ec=ec))
+        ax.add_patch(plt.Polygon([(x1, y1), (x2, y3), (x3, y1)], lw=lw, fc=fc, ec=ec))
     elif isinstance(fc, list):
         match len(fc):
             case 1:
@@ -148,7 +149,7 @@ def drawTriangle(ax, pos, lw, fc, ec, style):
                     case _:
                         print(f"Unknown department: {fc}")
 
-                ax.add_patch(plt.Polygon([(x1, y1), (x2, y2), (x3, y1)], lw=lw, fc=color, ec=ec))
+                ax.add_patch(plt.Polygon([(x1, y1), (x2, y3), (x3, y1)], lw=lw, fc=color, ec=ec))
 
             case 2:
                 (dp1, amount1) = fc[0]
@@ -158,8 +159,11 @@ def drawTriangle(ax, pos, lw, fc, ec, style):
 
                 match (amount1, amount2):
                     case (1, 1):
-                        ax.add_patch(plt.Polygon([(x1, y1), (x2, y2), (x2, y1)], lw=lw, fc=color1, ec=color1))
-                        ax.add_patch(plt.Polygon([(x2, y1), (x2, y2), (x3, y1)], lw=lw, fc=color2, ec=color2))
+                        ax.add_patch(plt.Polygon([(x1, y1), (x2, y3), (x2, y1)], lw=lw, fc=color1, ec=color1))
+                        ax.add_patch(plt.Polygon([(x2, y1), (x2, y3), (x3, y1)], lw=lw, fc=color2, ec=color2))
+                    case (2, 1):
+                        ax.add_patch(plt.Polygon([(x1, y1), (x3, y1), (x2, y2), (x2, y3)], lw=lw, fc=color1, ec=color1))
+                        ax.add_patch(plt.Polygon([(x2, y2), (x3, y1), (x2, y3)], lw=lw, fc=color2, ec=color2))
                     case _:
                         print(f"Unsupported amount for triangle: {(amount1, amount2)}")
             case _:
@@ -173,20 +177,25 @@ def drawLegendTriangle(ax, pos, text, style):
     drawTriangle(ax, (x, y), style.legendShapeWidth, "none", "black", style)
     ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
 
-def drawAsterisk(ax, pos, lw, c, style):
-    mx = pos[0]
-    my = pos[1]
+def drawApp2020(ax, pos, c, style):
+    ax.text(pos[0], pos[1] - 0.06, "*", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
-    radius = style.legendRectsize3
+def drawApp2023(ax, pos, c, style):
+    ax.text(pos[0], pos[1] - 0.01, "+", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
-    for angle in [90, 162, 234, 306, 18]:
-        x = radius * math.cos(math.radians(angle))
-        y = radius * math.sin(math.radians(angle))
-        line = plt.Line2D([mx, mx + x], [my, my + y], lw=lw, c=c)
-        ax.add_line(line)
+def drawApp2024(ax, pos, c, style):
+    ax.text(pos[0], pos[1] - 0.01, "⊗", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
-def drawLegendAsterisk(ax, pos, text, style):
-    drawAsterisk(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), style.legendShapeWidth, "black", style)
+def drawLegendApp2020(ax, pos, text, style):
+    drawApp2020(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)
+    ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
+
+def drawLegendApp2023(ax, pos, text, style):
+    drawApp2023(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)
+    ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
+
+def drawLegendApp2024(ax, pos, text, style):
+    drawApp2024(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)
     ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
 
 def calcDist(pos1, pos2):
@@ -234,8 +243,14 @@ def drawLegend(ax, style):
     senkenbergPos = (hohenheimPos[0], hohenheimPos[1] - style.legendSpace)
     drawLegendTriangle(ax, senkenbergPos, "Senckenberg", style)
 
-    appointmentPos = (senkenbergPos[0], senkenbergPos[1] - style.legendSpace)
-    drawLegendAsterisk(ax, appointmentPos, "appointment since 2020", style)
+    appointment2020Pos = (senkenbergPos[0], senkenbergPos[1] - style.legendSpace)
+    drawLegendApp2020(ax, appointment2020Pos, "appointment since 2020", style)
+
+    appointment2023Pos = (appointment2020Pos[0], appointment2020Pos[1] - style.legendSpace)
+    drawLegendApp2023(ax, appointment2023Pos, "appointment since 2023", style)
+
+    appointment2024Pos = (appointment2023Pos[0], appointment2023Pos[1] - style.legendSpace)
+    drawLegendApp2024(ax, appointment2024Pos, "appointment since 2024", style)
 
 def drawData(ax, style, data):
     (centerX, centerY) = style.dataCenter
@@ -288,8 +303,15 @@ def drawData(ax, style, data):
         else:
             print("Unknown institution: {wg.institution}")
 
-        if wg.appointmentSince2020:
-            drawAsterisk(ax, wg.symbolPos, style.legendShapeWidth, "white", style)
+        match wg.appointmentSince:
+            case "2020":
+                drawApp2020(ax, wg.symbolPos, "white", style)
+            case "2023":
+                drawApp2023(ax, wg.symbolPos, "white", style)
+            case "2024":
+                drawApp2024(ax, wg.symbolPos, "white", style)
+            case _:
+                pass
 
     # Draw Text:
     for wg in data:
