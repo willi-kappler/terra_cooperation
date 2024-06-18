@@ -43,12 +43,12 @@ def generateWorkgroups():
     workgroup = Workgroup("Macke")
     workgroup.department = [Department.comp]
     workgroup.appointmentSince = "2020"
-    workgroup.cooperations = [("Drews", 1), ("Henning", 2)]
+    workgroup.cooperations = [("Drews", 2), ("Henning", 2)]
     result.append(workgroup)
 
     workgroup = Workgroup("Henning")
     workgroup.department = [Department.comp]
-    workgroup.cooperations = [("Drews", 1), ("Scholten", 1)]
+    workgroup.cooperations = [("Drews", 1), ("Scholten", 2)]
     result.append(workgroup)
 
     workgroup = Workgroup("Scholten")
