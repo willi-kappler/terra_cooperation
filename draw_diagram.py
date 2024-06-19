@@ -178,6 +178,9 @@ def drawLegendTriangle(ax, pos, text, style):
     ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
 
 def drawApp2020(ax, pos, c, style):
+    ax.text(pos[0], pos[1] - 0.01, "§", size=style.legendSymbolSize, ha="center", va="center", c=c)
+
+def drawApp2022(ax, pos, c, style):
     ax.text(pos[0], pos[1] - 0.06, "*", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
 def drawApp2023(ax, pos, c, style):
@@ -188,6 +191,10 @@ def drawApp2024(ax, pos, c, style):
 
 def drawLegendApp2020(ax, pos, text, style):
     drawApp2020(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)
+    ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
+
+def drawLegendApp2022(ax, pos, text, style):
+    drawApp2022(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)
     ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
 
 def drawLegendApp2023(ax, pos, text, style):
@@ -243,14 +250,17 @@ def drawLegend(ax, style):
     senkenbergPos = (hohenheimPos[0], hohenheimPos[1] - style.legendSpace)
     drawLegendTriangle(ax, senkenbergPos, "Senckenberg", style)
 
-    appointment2020Pos = (senkenbergPos[0], senkenbergPos[1] - style.legendSpace)
-    drawLegendApp2020(ax, appointment2020Pos, "appointment since 2020", style)
+    #appointment2020Pos = (senkenbergPos[0], senkenbergPos[1] - style.legendSpace)
+    #drawLegendApp2020(ax, appointment2020Pos, "appointment since 2020", style)
 
-    appointment2023Pos = (appointment2020Pos[0], appointment2020Pos[1] - style.legendSpace)
-    drawLegendApp2023(ax, appointment2023Pos, "appointment since 2023", style)
+    appointment2022Pos = (senkenbergPos[0], senkenbergPos[1] - style.legendSpace)
+    drawLegendApp2022(ax, appointment2022Pos, "appointment since 2022", style)
 
-    appointment2024Pos = (appointment2023Pos[0], appointment2023Pos[1] - style.legendSpace)
-    drawLegendApp2024(ax, appointment2024Pos, "appointment since 2024", style)
+    #appointment2023Pos = (appointment2022Pos[0], appointment2022Pos[1] - style.legendSpace)
+    #drawLegendApp2023(ax, appointment2023Pos, "appointment since 2023", style)
+
+    appointment2024Pos = (appointment2022Pos[0], appointment2022Pos[1] - style.legendSpace)
+    drawLegendApp2024(ax, appointment2024Pos, "appointed 2024", style)
 
 def drawData(ax, style, data):
     (centerX, centerY) = style.dataCenter
@@ -306,6 +316,8 @@ def drawData(ax, style, data):
         match wg.appointmentSince:
             case "2020":
                 drawApp2020(ax, wg.symbolPos, "white", style)
+            case "2022":
+                drawApp2022(ax, wg.symbolPos, "white", style)
             case "2023":
                 drawApp2023(ax, wg.symbolPos, "white", style)
             case "2024":

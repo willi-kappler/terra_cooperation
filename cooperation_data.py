@@ -21,11 +21,6 @@ class Workgroup:
         self.appointmentSince = ""
         self.cooperations = []
 
-#Norton: Tübingen, 100% Geo, appointment at Tübingen 2024
-#Tsukamoto: Tübingen, 100% Geo, appointment at Tübingen 2023
-
-
-
 def generateWorkgroups():
     print("Create workgroups")
 
@@ -42,7 +37,6 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Macke")
     workgroup.department = [Department.comp]
-    workgroup.appointmentSince = "2020"
     workgroup.cooperations = [("Drews", 2), ("Henning", 2)]
     result.append(workgroup)
 
@@ -57,19 +51,16 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Rehfeld")
     workgroup.department = [(Department.geo, 3), (Department.comp, 1)]
-    workgroup.appointmentSince = "2020"
     workgroup.cooperations = [("Dippold", 1), ("Schweiger", 1), ("Mulch", 1), ("Tsukamoto", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Dippold")
     workgroup.department = [(Department.geo, 1),  (Department.bio, 1)]
-    workgroup.appointmentSince = "2020"
     workgroup.cooperations = [("Drews", 1), ("Mulch", 1), ("Oelmann", 4), ("Schweiger", 1), ("Tielbörger", 4), ("Streck", 1)]
     result.append(workgroup)
 
     workgroup = Workgroup("Drews")
     workgroup.department = [(Department.geo, 3), (Department.comp, 1)]
-    workgroup.appointmentSince = "2020"
     workgroup.cooperations = [("Oelmann", 1), ("Tielbörger", 1)]
     result.append(workgroup)
 
@@ -80,7 +71,7 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Tsukamoto")
     workgroup.department = [Department.geo]
-    workgroup.appointmentSince = "2023"
+    workgroup.appointmentSince = "2022"
     workgroup.cooperations = [("Mulch", 1)]
     result.append(workgroup)
 
@@ -103,7 +94,6 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Schweiger")
     workgroup.department = [Department.bio]
-    workgroup.appointmentSince = "2020"
     workgroup.institution = Institution.hohenheim
     workgroup.cooperations = []
     result.append(workgroup)
@@ -125,17 +115,6 @@ def generateWorkgroups():
     workgroup.institution = Institution.senckenberg
     workgroup.cooperations = [("Bocherens", 1), ("Böhme", 1)]
     result.append(workgroup)
-
-    #workgroup = Workgroup("Böhning-Gaese")
-    #workgroup.department = [Department.bio]
-    #workgroup.institution = Institution.senckenberg
-    #workgroup.cooperations = [("Oelmann", 1)]
-    #result.append(workgroup)
-
-    #workgroup = Workgroup("Fitzsimmons")
-    #workgroup.appointmentSince2020 = True
-    #workgroup.cooperations = []
-    #result.append(workgroup)
 
     workgroup = Workgroup("Böhme")
     workgroup.department = [(Department.geo, 2), (Department.bio, 1)]
@@ -159,7 +138,7 @@ def generateWorkgroups():
 
     workgroup = Workgroup("Monte")
     workgroup.department = [Department.bio]
-    workgroup.appointmentSince = "2020"
+    workgroup.appointmentSince = "2022"
     workgroup.cooperations = []
     result.append(workgroup)
 
