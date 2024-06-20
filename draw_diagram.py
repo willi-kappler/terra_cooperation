@@ -186,10 +186,11 @@ def drawApp2022(ax, pos, c, style):
     ax.text(pos[0], pos[1] - 0.06, "*", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
 def drawApp2023(ax, pos, c, style):
-    ax.text(pos[0], pos[1] - 0.01, "+", size=style.legendSymbolSize, ha="center", va="center", c=c)
+    ax.text(pos[0], pos[1] - 0.01, "#", size=style.legendSymbolSize, ha="center", va="center", c=c)
 
 def drawApp2024(ax, pos, c, style):
-    ax.text(pos[0], pos[1] - 0.01, "⊗", size=style.legendSymbolSize, ha="center", va="center", c=c)
+    # "⊗"
+    ax.text(pos[0], pos[1] - 0.01, "+", size=style.legendSymbolSize * 0.7, ha="center", va="center", c=c)
 
 def drawLegendApp2020(ax, pos, text, style):
     drawApp2020(ax, (pos[0] + style.legendRectsize2, pos[1] + style.legendRectsize2), "black", style)

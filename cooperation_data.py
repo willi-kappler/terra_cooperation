@@ -110,6 +110,12 @@ def generateWorkgroups():
     workgroup.cooperations = [("Mulch", 5)]
     result.append(workgroup)
 
+    workgroup = Workgroup("N.N.")
+    workgroup.department = [Department.bio]
+    workgroup.appointmentSince = "2024"
+    workgroup.institution = Institution.senckenberg
+    result.append(workgroup)
+
     workgroup = Workgroup("Mulch")
     workgroup.department = [Department.geo]
     workgroup.institution = Institution.senckenberg
