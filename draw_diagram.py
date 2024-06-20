@@ -8,6 +8,8 @@ import diagram_style
 import cooperation_data
 from cooperation_data import Department, Institution
 
+plt.rcParams["svg.fonttype"] = "none"
+
 def drawLegendRect(ax, pos, color, text, style):
     ax.add_patch(plt.Rectangle(pos, style.legendRectsize, style.legendRectsize, fc=color))
     ax.text(pos[0] + style.legendSpace, pos[1] + style.legendRectsize2, text, size=style.legendFontSize, ha="left", va="center")
