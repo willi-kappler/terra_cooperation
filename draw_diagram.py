@@ -59,7 +59,7 @@ def drawCircle(ax, pos, lw, fc, ec, style):
                 ax.add_patch(patches.Wedge(pos, style.legendRectsize2, t1, t2, lw=lw, fc=color1, ec=color1))
                 ax.add_patch(patches.Wedge(pos, style.legendRectsize2, t2, t1, lw=lw, fc=color2, ec=color2))
             case _:
-                print(f"Unsupported number of color values: {fc}")
+                print(f"Unsupported number of color values (circle): {fc}")
     else:
         print(f"Unknown type for face color: {fc}")
 
@@ -112,9 +112,23 @@ def drawDiamond(ax, pos, lw, fc, ec, style):
                         ax.add_patch(plt.Polygon([(x2, y2), (x2, y3), (x3, y2)], lw=lw, fc=color2, ec=color2))
                     case _:
                         print(f"Unsupported amount for diamond: {(amount1, amount2)}")
+            case 3:
+                (dp1, amount1) = fc[0]
+                (dp2, amount2) = fc[1]
+                (dp3, amount3) = fc[2]
+                color1 = departmentToColor(dp1, style)
+                color2 = departmentToColor(dp2, style)
+                color3 = departmentToColor(dp3, style)
 
+                match (amount1, amount2, amount3):
+                    case (2, 1, 1):
+                        ax.add_patch(plt.Polygon([(x2, y1), (x1, y2), (x2, y3)], lw=lw, fc=color1, ec=color1))
+                        ax.add_patch(plt.Polygon([(x2, y2), (x2, y3), (x3, y2)], lw=lw, fc=color2, ec=color2))
+                        ax.add_patch(plt.Polygon([(x2, y2), (x2, y1), (x3, y2)], lw=lw, fc=color3, ec=color3))
+                    case _:
+                        print(f"Unsupported amount for diamond: {(amount1, amount2, amount3)}")
             case _:
-                print(f"Unsupported number of color values: {fc}")
+                print(f"Unsupported number of color values (diamond): {fc}")
     else:
         print(f"Unknown type for face color: {fc}")
 
@@ -168,8 +182,37 @@ def drawTriangle(ax, pos, lw, fc, ec, style):
                         ax.add_patch(plt.Polygon([(x2, y2), (x3, y1), (x2, y3)], lw=lw, fc=color2, ec=color2))
                     case _:
                         print(f"Unsupported amount for triangle: {(amount1, amount2)}")
+            case 3:
+                (dp1, amount1) = fc[0]
+                (dp2, amount2) = fc[1]
+                (dp3, amount3) = fc[2]
+                color1 = departmentToColor(dp1, style)
+                color2 = departmentToColor(dp2, style)
+                color3 = departmentToColor(dp3, style)
+
+                sq2 = math.sqrt(2.0)
+
+                height = y3 - y1
+                height2 = height / sq3
+                y4 = y3 - height2
+
+                base = x3 - x1
+                base2 = base / 2.0
+                base3 = base2 / sq3
+
+                x4 = x2 - base3
+                x5 = x2 + base3
+
+                match (amount1, amount2, amount3):
+                    case (2, 1, 1):
+                        ax.add_patch(plt.Polygon([(x1, y1), (x4, y4), (x5, y4), (x3, y1)], lw=lw, fc=color1, ec=color1))
+                        ax.add_patch(plt.Polygon([(x4, y4), (x2, y4), (x2, y3)], lw=lw, fc=color2, ec=color2))
+                        ax.add_patch(plt.Polygon([(x2, y4), (x2, y3), (x5, y4)], lw=lw, fc=color3, ec=color3))
+                    case _:
+                        print(f"Unsupported amount for triangle: {(amount1, amount2)}")
+
             case _:
-                print(f"Unsupported number of color values: {fc}")
+                print(f"Unsupported number of color values (triangle): {fc}")
     else:
         print(f"Unknown type for face color: {fc}")
 
